@@ -25,6 +25,11 @@ import EarningsPage from './pages/teacher/EarningsPage.jsx';
 import ManageAvailabilityPage from './pages/teacher/ManageAvailabilityPage.jsx';
 import BatchManagementPage from './pages/teacher/BatchManagementPage.jsx';
 import MessagingPage from './pages/shared/MessagingPage.jsx';
+import VideoClassPage from './pages/shared/VideoClassPage.jsx';
+import ProfileSettings from './pages/settings/ProfileSettings.jsx';
+import AccountSettings from './pages/settings/AccountSettings.jsx';
+import NotificationSettings from './pages/settings/NotificationSettings.jsx';
+import CommunityFeed from './pages/shared/CommunityFeed.jsx';
 
 function App() {
   return (
@@ -56,6 +61,11 @@ function App() {
       <Route path="/checkout/confirmation" element={<OrderConfirmationPage />} />
       <Route path="/help" element={<HelpCenter />} />
       <Route path="/messages" element={<MessagingPage />} />
+      <Route path="/class" element={<VideoClassPage />} />
+      <Route path="/settings/profile" element={<ProfileSettings />} />
+      <Route path="/settings/account" element={<AccountSettings />} />
+      <Route path="/settings/notifications" element={<NotificationSettings />} />
+      <Route path="/community" element={<CommunityFeed />} />
       {/* Additional routes will be registered here as we build out the app */}
     </Routes>
   );
