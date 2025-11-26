@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Lottie from 'lottie-react';
-import Navbar from '../components/Navbar.jsx';
-import Footer from '../components/Footer.jsx';
 import CourseCard from '../components/CourseCard.jsx';
 import heroLearningAnimation from '../assets/hero-learning.json';
 
@@ -112,9 +110,7 @@ function HowItWorksTabs() {
 
 function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <Navbar />
-
+    <>
       <main className="flex-1">
         <section className="relative overflow-hidden bg-gradient-to-br from-white via-white to-gray-50">
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
@@ -210,9 +206,7 @@ function LandingPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
-    </div>
+    </>
   );
 }
 

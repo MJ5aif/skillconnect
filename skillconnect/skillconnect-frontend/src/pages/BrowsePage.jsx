@@ -1,6 +1,4 @@
 import { useMemo, useState } from 'react';
-import Navbar from '../components/Navbar.jsx';
-import Footer from '../components/Footer.jsx';
 import CourseCard from '../components/CourseCard.jsx';
 import TeacherCard from '../components/TeacherCard.jsx';
 
@@ -156,8 +154,7 @@ function BrowsePage() {
   }, [serviceType, selectedCategories, selectedSkills, ratingThreshold, priceTier, searchTerm]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <Navbar />
+    <>
       <main className="mx-auto flex w-full max-w-7xl flex-1 gap-8 px-4 py-10 sm:px-6 lg:px-8">
         <aside className="hidden w-72 shrink-0 rounded-3xl bg-white p-6 shadow-xl lg:block">
           <div className="sticky top-24 space-y-6">
@@ -300,8 +297,8 @@ function BrowsePage() {
           </div>
         </section>
       </main>
-      <Footer />
-    </div>
+      </main>
+    </>
   );
 }
 

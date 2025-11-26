@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { HiOutlineStar, HiOutlineClock, HiOutlineVideoCamera, HiOutlineUserGroup } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar.jsx';
-import Footer from '../components/Footer.jsx';
 
 const course = {
   id: 'ux-mentor-lab',

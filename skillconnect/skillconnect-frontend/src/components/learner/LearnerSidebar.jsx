@@ -1,48 +1,50 @@
 import { NavLink } from 'react-router-dom';
-import {
-  HiOutlineHome,
-  HiOutlineBookOpen,
-  HiOutlineCalendar,
-  HiOutlineSearch,
-  HiOutlineChat,
-  HiOutlinePlay,
-} from 'react-icons/hi';
+import { 
+  FaHome, 
+  FaBook, 
+  FaCalendar, 
+  FaSearch, 
+  FaUsers, 
+  FaComments,
+  FaCog
+} from 'react-icons/fa';
 
-const navItems = [
-  { label: 'Dashboard', to: '/dashboard/learn', icon: HiOutlineHome },
-  { label: 'My Learning', to: '/dashboard/learn/courses', icon: HiOutlineBookOpen },
-  { label: 'Classroom', to: '/dashboard/learn/classroom', icon: HiOutlinePlay },
-  { label: 'My Schedule', to: '/dashboard/learn/schedule', icon: HiOutlineCalendar },
-  { label: 'Browse', to: '/browse', icon: HiOutlineSearch },
-  { label: 'Messages', to: '/messages', icon: HiOutlineChat },
-];
+const LearnerSidebar = () => {
+  const navItems = [
+    { to: '/learn/dashboard', icon: FaHome, label: 'Dashboard' },
+    { to: '/learn/my-learning', icon: FaBook, label: 'My Learning' },
+    { to: '/learn/my-schedule', icon: FaCalendar, label: 'My Schedule' },
+    { to: '/browse', icon: FaSearch, label: 'Browse Courses' },
+    { to: '/community', icon: FaUsers, label: 'Community' },
+    { to: '/messages', icon: FaComments, label: 'Messages' },
+    { to: '/settings/profile', icon: FaCog, label: 'Settings' },
+  ];
 
-function LearnerSidebar() {
   return (
-    <aside className="hidden w-64 shrink-0 bg-white px-6 py-10 shadow-lg lg:block">
-      <div className="sticky top-24">
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Navigation</p>
-        <nav className="mt-6 space-y-2">
-          {navItems.map(({ label, to, icon: Icon }) => (
+    <aside className="w-64 bg-white border-r border-gray-200 h-screen sticky top-0 overflow-y-auto">
+      <div className="p-6">
+        <h2 className="text-xl font-bold text-gray-800 mb-6">Learning Hub</h2>
+        <nav className="space-y-2">
+          {navItems.map((item) => (
             <NavLink
-              key={to}
-              to={to}
+              key={item.to}
+              to={item.to}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                   isActive
-                    ? 'bg-brand-blue/10 text-brand-blue shadow-inner'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                    ? 'bg-gradient-to-r from-blue-600 to-teal-500 text-white shadow-md'
+                    : 'text-gray-700 hover:bg-gray-100'
                 }`
               }
             >
-              <Icon className="h-5 w-5" />
-              {label}
+              <item.icon className="text-lg" />
+              <span className="font-medium">{item.label}</span>
             </NavLink>
           ))}
         </nav>
       </div>
     </aside>
   );
-}
+};
 
 export default LearnerSidebar;

@@ -1,72 +1,158 @@
-import { Route, Routes } from 'react-router-dom';
-import LandingPage from './pages/LandingPage.jsx';
-import SignUpPage from './pages/SignUpPage.jsx';
-import SignInPage from './pages/SignInPage.jsx';
-import ForgotPassword from './pages/ForgotPassword.jsx';
-import RoleSelectionPage from './pages/RoleSelectionPage.jsx';
-import TeacherOnboarding from './pages/TeacherOnboarding.jsx';
-import LearnerOnboarding from './pages/LearnerOnboarding.jsx';
-import AboutUs from './pages/AboutUs.jsx';
-import LearnerDashboard from './pages/learner/LearnerDashboard.jsx';
-import TeacherDashboard from './pages/teacher/TeacherDashboard.jsx';
-import BrowsePage from './pages/BrowsePage.jsx';
-import CourseDetailPage from './pages/CourseDetailPage.jsx';
-import HelpCenter from './pages/HelpCenter.jsx';
-import TeacherProfilePage from './pages/TeacherProfilePage.jsx';
-import CheckoutPage from './pages/CheckoutPage.jsx';
-import OrderConfirmationPage from './pages/OrderConfirmationPage.jsx';
-import ClassroomPage from './pages/learner/ClassroomPage.jsx';
-import MyLearningPage from './pages/learner/MyLearningPage.jsx';
-import MySchedulePage from './pages/learner/MySchedulePage.jsx';
-import MyServicesPage from './pages/teacher/MyServicesPage.jsx';
-import ServiceWizardPage from './pages/teacher/ServiceWizardPage.jsx';
-import OrderManagementPage from './pages/teacher/OrderManagementPage.jsx';
-import EarningsPage from './pages/teacher/EarningsPage.jsx';
-import ManageAvailabilityPage from './pages/teacher/ManageAvailabilityPage.jsx';
-import BatchManagementPage from './pages/teacher/BatchManagementPage.jsx';
-import MessagingPage from './pages/shared/MessagingPage.jsx';
-import VideoClassPage from './pages/shared/VideoClassPage.jsx';
-import ProfileSettings from './pages/settings/ProfileSettings.jsx';
-import AccountSettings from './pages/settings/AccountSettings.jsx';
-import NotificationSettings from './pages/settings/NotificationSettings.jsx';
-import CommunityFeed from './pages/shared/CommunityFeed.jsx';
+import { Route, Routes, Navigate } from 'react-router-dom';
+
+// Layouts
+import PublicLayout from './layouts/PublicLayout';
+import LearnerDashboardLayout from './layouts/LearnerDashboardLayout';
+import TeacherDashboardLayout from './layouts/TeacherDashboardLayout';
+import SettingsLayout from './layouts/SettingsLayout';
+import FullScreenLayout from './layouts/FullScreenLayout';
+
+// Protected Route
+import ProtectedRoute from './utils/ProtectedRoute';
+
+// Public Pages
+import LandingPage from './pages/LandingPage';
+import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
+import ForgotPassword from './pages/ForgotPassword';
+import AboutUs from './pages/AboutUs';
+import HelpCenter from './pages/HelpCenter';
+import BrowsePage from './pages/BrowsePage';
+import CourseDetailPage from './pages/CourseDetailPage';
+import TeacherProfilePage from './pages/TeacherProfilePage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
+
+// Onboarding Pages
+import RoleSelectionPage from './pages/RoleSelectionPage';
+import TeacherOnboarding from './pages/TeacherOnboarding';
+import LearnerOnboarding from './pages/LearnerOnboarding';
+
+// Learner Dashboard Pages
+import LearnerDashboard from './pages/learner/LearnerDashboard';
+import MyLearningPage from './pages/learner/MyLearningPage';
+import ClassroomPage from './pages/learner/ClassroomPage';
+import MySchedulePage from './pages/learner/MySchedulePage';
+
+// Teacher Dashboard Pages
+import TeacherDashboard from './pages/teacher/TeacherDashboard';
+import MyServicesPage from './pages/teacher/MyServicesPage';
+import ServiceWizardPage from './pages/teacher/ServiceWizardPage';
+import OrderManagementPage from './pages/teacher/OrderManagementPage';
+import EarningsPage from './pages/teacher/EarningsPage';
+import ManageAvailabilityPage from './pages/teacher/ManageAvailabilityPage';
+import BatchManagementPage from './pages/teacher/BatchManagementPage';
+
+// Shared Pages
+import MessagingPage from './pages/shared/MessagingPage';
+import VideoClassPage from './pages/shared/VideoClassPage';
+import CommunityFeed from './pages/shared/CommunityFeed';
+
+// Settings Pages
+import ProfileSettings from './pages/settings/ProfileSettings';
+import AccountSettings from './pages/settings/AccountSettings';
+import NotificationSettings from './pages/settings/NotificationSettings';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      {/* ========== PUBLIC ROUTES (With Navbar & Footer) ========== */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/help" element={<HelpCenter />} />
+        <Route path="/browse" element={<BrowsePage />} />
+        <Route path="/courses/:courseId" element={<CourseDetailPage />} />
+        <Route path="/mentors/:mentorId" element={<TeacherProfilePage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
+      </Route>
+
+      {/* ========== AUTH ROUTES (No Navbar) ========== */}
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/signin" element={<SignInPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/about" element={<AboutUs />} />
+      
+      {/* ========== ONBOARDING ROUTES (No Navbar) ========== */}
       <Route path="/role-selection" element={<RoleSelectionPage />} />
       <Route path="/teacher-onboarding" element={<TeacherOnboarding />} />
       <Route path="/learner-onboarding" element={<LearnerOnboarding />} />
-      <Route path="/dashboard/learn" element={<LearnerDashboard />} />
-      <Route path="/dashboard/learn/courses" element={<MyLearningPage />} />
-      <Route path="/dashboard/learn/classroom" element={<ClassroomPage />} />
-      <Route path="/dashboard/learn/schedule" element={<MySchedulePage />} />
-      <Route path="/dashboard/teach" element={<TeacherDashboard />} />
-      <Route path="/dashboard/teach/services" element={<MyServicesPage />} />
-      <Route path="/dashboard/teach/orders" element={<OrderManagementPage />} />
-      <Route path="/dashboard/teach/earnings" element={<EarningsPage />} />
-      <Route path="/dashboard/teach/schedule" element={<ManageAvailabilityPage />} />
-      <Route path="/dashboard/teach/batches" element={<BatchManagementPage />} />
-      <Route path="/dashboard/teach/services/new" element={<ServiceWizardPage />} />
-      <Route path="/dashboard/teach/services/:serviceId/edit" element={<ServiceWizardPage />} />
-      <Route path="/browse" element={<BrowsePage />} />
-      <Route path="/courses/:courseId" element={<CourseDetailPage />} />
-      <Route path="/mentors/:mentorId" element={<TeacherProfilePage />} />
-      <Route path="/checkout" element={<CheckoutPage />} />
-      <Route path="/checkout/confirmation" element={<OrderConfirmationPage />} />
-      <Route path="/help" element={<HelpCenter />} />
-      <Route path="/messages" element={<MessagingPage />} />
-      <Route path="/class" element={<VideoClassPage />} />
-      <Route path="/settings/profile" element={<ProfileSettings />} />
-      <Route path="/settings/account" element={<AccountSettings />} />
-      <Route path="/settings/notifications" element={<NotificationSettings />} />
-      <Route path="/community" element={<CommunityFeed />} />
-      {/* Additional routes will be registered here as we build out the app */}
+
+      {/* ========== LEARNER DASHBOARD ROUTES (Protected) ========== */}
+      <Route
+        path="/learn"
+        element={
+          <ProtectedRoute requiredRole="learner">
+            <LearnerDashboardLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<LearnerDashboard />} />
+        <Route path="my-learning" element={<MyLearningPage />} />
+        <Route path="classroom/:courseId" element={<ClassroomPage />} />
+        <Route path="my-schedule" element={<MySchedulePage />} />
+      </Route>
+
+      {/* ========== TEACHER DASHBOARD ROUTES (Protected) ========== */}
+      <Route
+        path="/teach"
+        element={
+          <ProtectedRoute requiredRole="teacher">
+            <TeacherDashboardLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<TeacherDashboard />} />
+        <Route path="services" element={<MyServicesPage />} />
+        <Route path="services/new" element={<ServiceWizardPage />} />
+        <Route path="services/:serviceId/edit" element={<ServiceWizardPage />} />
+        <Route path="orders" element={<OrderManagementPage />} />
+        <Route path="earnings" element={<EarningsPage />} />
+        <Route path="availability" element={<ManageAvailabilityPage />} />
+        <Route path="batches" element={<BatchManagementPage />} />
+      </Route>
+
+      {/* ========== SETTINGS ROUTES (Protected, Shared) ========== */}
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <SettingsLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="profile" element={<ProfileSettings />} />
+        <Route path="account" element={<AccountSettings />} />
+        <Route path="notifications" element={<NotificationSettings />} />
+      </Route>
+
+      {/* ========== FULLSCREEN ROUTES (Protected, Immersive - No Navbar/Sidebar) ========== */}
+      <Route element={<FullScreenLayout />}>
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute>
+              <MessagingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/class/:sessionId"
+          element={
+            <ProtectedRoute>
+              <VideoClassPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <ProtectedRoute>
+              <CommunityFeed />
+            </ProtectedRoute>
+          }
+        />
+      </Route>
     </Routes>
   );
 }

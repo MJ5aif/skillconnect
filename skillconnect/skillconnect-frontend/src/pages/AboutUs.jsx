@@ -1,6 +1,3 @@
-import Navbar from '../components/Navbar.jsx';
-import Footer from '../components/Footer.jsx';
-
 const teamMembers = [
   {
     name: 'Robin Dey Rudro',
@@ -24,8 +21,7 @@ const teamMembers = [
 
 function AboutUs() {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <Navbar />
+    <>
       <main className="flex-1">
         <section className="bg-white">
           <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -111,8 +107,8 @@ function AboutUs() {
           </div>
         </section>
       </main>
-      <Footer />
-    </div>
+      </main>
+    </>
   );
 }
 

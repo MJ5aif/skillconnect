@@ -1,50 +1,56 @@
 import { NavLink } from 'react-router-dom';
 import {
-  HiOutlineViewGrid,
-  HiOutlineCollection,
-  HiOutlineClipboardList,
-  HiOutlineCash,
-  HiOutlineCalendar,
-  HiOutlineChat,
-} from 'react-icons/hi';
+  FaTachometerAlt,
+  FaBriefcase,
+  FaClipboardList,
+  FaDollarSign,
+  FaCalendarAlt,
+  FaUsers,
+  FaCog,
+  FaComments
+} from 'react-icons/fa';
 
-const navItems = [
-  { label: 'Dashboard', to: '/dashboard/teach', icon: HiOutlineViewGrid },
-  { label: 'My Services', to: '/dashboard/teach/services', icon: HiOutlineCollection },
-  { label: 'Order Management', to: '/dashboard/teach/orders', icon: HiOutlineClipboardList },
-  { label: 'Earnings', to: '/dashboard/teach/earnings', icon: HiOutlineCash },
-  { label: 'My Schedule', to: '/dashboard/teach/schedule', icon: HiOutlineCalendar },
-  { label: 'Messages', to: '/messages', icon: HiOutlineChat },
-];
+const TeacherSidebar = () => {
+  const navItems = [
+    { to: '/teach/dashboard', icon: FaTachometerAlt, label: 'Dashboard' },
+    { to: '/teach/services', icon: FaBriefcase, label: 'My Services' },
+    { to: '/teach/orders', icon: FaClipboardList, label: 'Order Management' },
+    { to: '/teach/earnings', icon: FaDollarSign, label: 'Earnings' },
+    { to: '/teach/availability', icon: FaCalendarAlt, label: 'Manage Availability' },
+    { to: '/teach/batches', icon: FaUsers, label: 'Batch Management' },
+    { to: '/messages', icon: FaComments, label: 'Messages' },
+    { to: '/settings/profile', icon: FaCog, label: 'Settings' },
+  ];
 
-function TeacherSidebar() {
   return (
-    <aside className="hidden w-72 shrink-0 bg-gray-900 px-6 py-10 text-white lg:block">
-      <div className="sticky top-24">
-        <div className="rounded-2xl bg-gray-800/80 p-4 text-sm uppercase tracking-wide text-gray-400">
-          Seller Control Center
+    <aside className="w-64 bg-gray-800 text-gray-300 h-screen sticky top-0 overflow-y-auto">
+      <div className="p-6">
+        <div className="bg-gray-700/50 rounded-lg p-3 mb-6 text-center">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-gray-400">
+            Seller Control Center
+          </h2>
         </div>
-        <nav className="mt-6 space-y-2">
-          {navItems.map(({ label, to, icon: Icon }) => (
+        <nav className="space-y-2">
+          {navItems.map((item) => (
             <NavLink
-              key={to}
-              to={to}
+              key={item.to}
+              to={item.to}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                   isActive
-                    ? 'bg-teal-500 text-white shadow-inner'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    ? 'bg-gradient-to-r from-blue-600 to-teal-500 text-white shadow-lg'
+                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                 }`
               }
             >
-              <Icon className="h-5 w-5" />
-              {label}
+              <item.icon className="text-lg" />
+              <span className="font-medium">{item.label}</span>
             </NavLink>
           ))}
         </nav>
       </div>
     </aside>
   );
-}
+};
 
 export default TeacherSidebar;
